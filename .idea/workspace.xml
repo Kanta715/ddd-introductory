@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3099be4e-ebb0-41ce-bb67-aa9e6e358c4a" name="変更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/DomainService/DomainService.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/DomainService/Main.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/Entity/Entity.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/Entity/Main.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/ValueObject/FullName.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/ValueObject/Main.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/ValueObject/ValueObject.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/example/Hello.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/Knowledge/ValueObject/ValueObject.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/Knowledge/ValueObject/ValueObject.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +90,7 @@
       <updated>1669519391848</updated>
       <workItem from="1669519396333" duration="1892000" />
       <workItem from="1669521305061" duration="78000" />
-      <workItem from="1669521481354" duration="7919000" />
+      <workItem from="1669521481354" duration="12113000" />
     </task>
     <servers />
   </component>
