@@ -2,8 +2,8 @@
 ドメイン駆動設計を入門する際の記録用リポジトリ
 
 ## 学習パターン一覧
-### 知識を表現するパターン
-- 値オブジェクト
+### [知識を表現するパターン](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge)
+- [値オブジェクト](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge/ValueObject/ValueObject.md)
 - エンティティ
 - ドメインサービス
 
