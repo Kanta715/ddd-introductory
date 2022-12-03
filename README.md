@@ -4,7 +4,7 @@
 ## 学習パターン一覧
 ### [知識を表現するパターン](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge)
 - [値オブジェクト](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge/ValueObject/ValueObject.md)
-- エンティティ
+- [エンティティ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Knowledge/Entity)
 - ドメインサービス
 
 ### アプリケーションを実現するためのパターン
