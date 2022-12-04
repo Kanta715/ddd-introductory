@@ -1,4 +1,4 @@
-package Knowledge.DomainService.UseCase
+package Knowledge.DomainService.UseCase.Entity
 
 import Knowledge.DomainService.UseCase.ValueObject.{ UserId, UserName }
 
