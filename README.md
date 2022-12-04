@@ -5,7 +5,7 @@
 ### [知識を表現するパターン](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge)
 - [値オブジェクト](https://github.com/Kanta715/ddd-introductory/blob/main/src/main/scala/Knowledge/ValueObject/ValueObject.md)
 - [エンティティ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Knowledge/Entity)
-- ドメインサービス
+- [ドメインサービス](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Knowledge/DomainService)
 
 ### アプリケーションを実現するためのパターン
 - リポジトリ
