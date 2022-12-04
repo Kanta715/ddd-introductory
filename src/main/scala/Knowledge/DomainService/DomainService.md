@@ -40,7 +40,7 @@ user.exists(user) match {
 ```
 
 ### 2-2. 不自然さを解消するドメインサービス
-ドメインサービスは値オブジェクトやエンティティと異なり、地震の振る舞いを変更するようなインスタンス特有の状態を持たないオブジェクト。（シングルトン）
+ドメインサービスは値オブジェクトやエンティティと異なり、自身の振る舞いを変更するようなインスタンス特有の状態を持たないオブジェクト。（シングルトン）
 ```Scala
 object UserService {
 
@@ -85,3 +85,49 @@ object UserService {
 エンティティがメンバ変数だけになると、そのドメインオブジェクトがどのようなルールや振る舞いがあるのか見ただけではわからなくなる。
 これはオブジェクト指向設計のデータと振る舞いをまとめるという基本的な戦略の反することになる。
 そのため、可能な限りドメインサービスを避けて、値オブジェクトやエンティティに記述すると不自然になるものだけに限定する。
+
+## 値オブジェクトやエンティティと共にユースケースを組み立てる
+ここではユーザー作成をするユースケースを組み立てる。
+
+```Scala
+// 値オブジェクト
+case class UserId(v: Int)
+
+case class UserName(v: String)
+
+// ------------------------------------------
+
+// エンティティ
+case class User(id: UserId, name: UserName)
+
+// ------------------------------------------
+
+// ドメインサービス
+class UserService {
+
+  def create(name: String): Unit = {
+
+    val userName: UserName = UserName(name)
+
+    val count:  Int = ??? // sql.execute("SELECT COUNT(id) FROM user;"): 適当なSQLです
+    val nextId: Int = count + 1
+
+    val userId: UserId = UserId(nextId)
+
+    val exists: Boolean = ??? // sql.execute("SELECT EXISTS (SELECT * FROM user WHERE id = $nextId")
+
+    if (!exists) {
+      // seq.execute("INSERT INTO user (id, name) VALUES ($nextId, $userName)")
+      println("作成しました")
+    } else {
+      println("作成に失敗しました")
+    }
+  }
+}
+```
+ここではユーザー作成をデータベースに問い合わせながら行っている。このコードは処理は正しく動作するが柔軟性に乏しい。
+
+例えば、MySQL から NoSQL へ移行する場合など、MySQL で記述している部分を全て改修しなければならない。
+
+ドメインサービスがデータベースへのアクセスに終始することは柔軟性に欠けるという問題がある。その問題はリポジトリを学習して問題解決をする。
+
