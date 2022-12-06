@@ -7,7 +7,7 @@
 - [エンティティ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Knowledge/Entity)
 - [ドメインサービス](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Knowledge/DomainService)
 
-### アプリケーションを実現するためのパターン
+### [アプリケーションを実現するためのパターン](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application)
 - [リポジトリ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/Repository)
 - [アプリケーションサービス](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/ApplicationService)
 - [ファクトリ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/Factory)
