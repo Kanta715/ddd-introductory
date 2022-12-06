@@ -9,7 +9,7 @@
 
 ### アプリケーションを実現するためのパターン
 - [リポジトリ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/Repository)
-- [アプリケーションサービス](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/Application)
+- [アプリケーションサービス](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/ApplicationService)
 - [ファクトリ](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Application/Factory)
 
 ### 知識を表現する、より発展的なパターン
