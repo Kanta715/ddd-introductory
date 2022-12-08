@@ -217,3 +217,54 @@ case class UserUpdateCommand(id: Int, name: Option[String] = None)
   //    }
   //  }
 ```
+
+## 4. アプリケーションサービスと凝集度
+プログラムには凝集度という考え方がある。凝集度はモジュールの責任範囲がどれだけ集中しているかを測る尺度のことを言う。凝集度を高めると、モジュールが1つの事柄に集中することになり、堅牢性・信頼性・再利用性・可読性の観点から好ましいとされる。
+
+凝集度を測る方法に LCOM という計算式があるらしく、端的には全てのインスタンス変数は全てのメソッドで使われるべき、というものである。
+
+ここでは、既に宣言した `UserApplicationService` を改修して凝集度を高めてみる。
+
+`UserApplicationService` では、インスタンス変数に `userRepository` と `userService` がある。
+`userService` は `get` メソッドのみで使われており、凝集度が高いクラスとは現時点で言えない。
+以下のように `CreateUserApplicationService` と `GetUserApplicationService` を作成し、凝集度の高いアプリケーションサービスを作成する。
+```Scala
+object CreateUserApplicationService {
+
+  private val userRepository = UserRepository
+  private val userService    = UserService
+
+  // 登録用メソッド
+  def register(name: String): Unit = {
+    val userName: UserName = UserName(name)
+    val user:     User     = User(None, userName)
+
+    val exists: Boolean = userService.checkDuplicatesAtName(user)
+    exists match {
+      case true =>
+        println(
+          """
+            |ユーザー名が重複しています
+            |ユーザー名を変更して再度登録してください
+            |""".stripMargin)
+      case false =>
+        userRepository.create(user)
+        println("ユーザーを作成しました")
+    }
+  }
+}
+
+// ------------------------------------------
+
+// UserService がなくなったことで凝集度が高まり、堅牢性・信頼性・再利用性・可読性が上がる
+object GetUserApplicationService {
+
+  private val userRepository = UserRepository
+
+  // 取得用メソッド
+  def get(id: UserId): Option[UserData] = {
+    val userOpt = userRepository.find(id)
+    userOpt.map(UserData.build(_))
+  }
+}
+```
