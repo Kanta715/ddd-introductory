@@ -29,18 +29,6 @@ object UserService {
 
   def checkDuplicatesAtName(user: User): Boolean =
     userRepository.checkDuplicatesAtName(user)
-
-  def create(user: User): User =
-    userRepository.create(user)
-
-  def find(id: UserId): Option[User] =
-    userRepository.find(id)
-
-  def updateOrCreate(user: User): User =
-    userRepository.updateOrCreate(user)
-
-  def delete(id: UserId): Option[User] =
-    userRepository.delete(id)
 }
 
 // リポジトリ
@@ -104,7 +92,8 @@ object UserRepository {
 // アプリケーションサービス
 object UserApplicationService {
 
-  private val userService = UserService
+  private val userRepository = UserRepository
+  private val userService    = UserService
 
   // 登録用メソッド
   def register(name: String): Unit = {
@@ -114,7 +103,7 @@ object UserApplicationService {
     val exists: Boolean = userService.checkDuplicatesAtName(user)
     exists match {
       case true =>
-        userService.create(user)
+        userRepository.create(user)
         println("ユーザーを作成しました")
       case false =>
         println(
@@ -147,7 +136,7 @@ get の返り値は `Option[User]` ではなく `Option[UserData]` になって�
    * それを防ぐために、必要なデータだけを持った UserData を返すようにしている
    */
   def get(id: UserId): Option[UserData] = {
-    val userOpt = userService.find(id)
+    val userOpt = userRepository.find(id)
     userOpt.map(UserData.build(_))
   }
 ```
@@ -158,7 +147,7 @@ get の返り値は `Option[User]` ではなく `Option[UserData]` になって�
   // 更新用メソッド
   // 既存のものがない場合は登録
   def update(user: User): User =
-    userService.updateOrCreate(user)
+    userRepository.updateOrCreate(user)
 ```
 
 部分的に更新を行いたい場合は、コマンドオブジェクトを用いることもあるらしい。
@@ -178,7 +167,7 @@ case class UserUpdateCommand(id: Int, name: Option[String] = None)
 ```Scala
   // 削除用メソッド
   def delete(id: UserId): Unit = {
-    val userOpt = userService.delete(id)
+    val userOpt = userRepository.delete(id)
     userOpt.isDefined match {
       case true  => println("ユーザーを削除しました")
       case false => println("ユーザーが見つかりませんでした")
@@ -186,7 +175,7 @@ case class UserUpdateCommand(id: Int, name: Option[String] = None)
   }
 ```
 
-## ドメインのルールの流出
+## 3.ドメインのルールの流出
 アプリケーションサービスはあくまでもドメインオブジェクトのタスク調整に徹する。
 アプリケーションサービスにドメインのルールが記述されると同じようなコードがシステム内に点在し、改修が大変になる。
 
@@ -205,7 +194,7 @@ case class UserUpdateCommand(id: Int, name: Option[String] = None)
             |ユーザー名を変更して再度登録してください
             |""".stripMargin)
       case false =>
-        userService.create(user)
+        userRepository.create(user)
         println("ユーザーを作成しました")
     }
   }
@@ -223,7 +212,7 @@ case class UserUpdateCommand(id: Int, name: Option[String] = None)
   //            |ユーザー名を変更して再度登録してください
   //            |""".stripMargin)
   //      case false =>
-  //        userService.create(userName)
+  //        userRepository.create(userName)
   //        println("ユーザーを作成しました")
   //    }
   //  }

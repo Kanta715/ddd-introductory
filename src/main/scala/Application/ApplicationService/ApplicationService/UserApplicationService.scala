@@ -4,11 +4,13 @@ import Application.ApplicationService.ValueObject.{UserId, UserName}
 import Application.ApplicationService.Entity.User
 import Application.ApplicationService.DomainService.UserService
 import Application.ApplicationService.DTO.UserData
+import Application.ApplicationService.Repository.UserRepository
 
 // アプリケーションサービス
 object UserApplicationService {
 
-  private val userService = UserService
+  private val userRepository = UserRepository
+  private val userService    = UserService
 
   // 登録用メソッド
   def register(name: String): Unit = {
@@ -24,7 +26,7 @@ object UserApplicationService {
             |ユーザー名を変更して再度登録してください
             |""".stripMargin)
       case false =>
-        userService.create(user)
+        userRepository.create(user)
         println("ユーザーを作成しました")
     }
   }
@@ -42,7 +44,7 @@ object UserApplicationService {
   //            |ユーザー名を変更して再度登録してください
   //            |""".stripMargin)
   //      case false =>
-  //        userService.create(userName)
+  //        userRepository.create(userName)
   //        println("ユーザーを作成しました")
   //    }
   //  }
@@ -54,18 +56,18 @@ object UserApplicationService {
    * それを防ぐために、必要なデータだけを持った UserData を返すようにしている
    */
   def get(id: UserId): Option[UserData] = {
-    val userOpt = userService.find(id)
+    val userOpt = userRepository.find(id)
     userOpt.map(UserData.build(_))
   }
 
   // 更新用メソッド
   // 既存のものがない場合は登録
   def update(user: User): User =
-    userService.updateOrCreate(user)
+    userRepository.updateOrCreate(user)
 
   // 削除用メソッド
   def delete(id: UserId): Unit = {
-    val userOpt = userService.delete(id)
+    val userOpt = userRepository.delete(id)
     userOpt.isDefined match {
       case true  => println("ユーザーを削除しました")
       case false => println("ユーザーが見つかりませんでした")

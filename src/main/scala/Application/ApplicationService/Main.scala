@@ -2,7 +2,6 @@ package Application.ApplicationService
 
 import Application.ApplicationService.ApplicationService.UserApplicationService
 import Application.ApplicationService.Entity.User
-import Application.ApplicationService.Repository.UserRepository
 import Application.ApplicationService.ValueObject.{ UserId, UserName }
 
 object Main {

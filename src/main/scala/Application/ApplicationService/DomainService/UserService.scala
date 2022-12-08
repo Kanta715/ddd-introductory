@@ -11,17 +11,5 @@ object UserService {
 
   def checkDuplicatesAtName(user: User): Boolean =
     userRepository.checkDuplicatesAtName(user)
-
-  def create(user: User): User =
-    userRepository.create(user)
-
-  def find(id: UserId): Option[User] =
-    userRepository.find(id)
-
-  def updateOrCreate(user: User): User =
-    userRepository.updateOrCreate(user)
-
-  def delete(id: UserId): Option[User] =
-    userRepository.delete(id)
 }
 
