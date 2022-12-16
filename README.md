@@ -14,6 +14,5 @@
 
 ### 知識を表現する、より発展的なパターン
 - [集約](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/AdvancedKnowledge/Aggregation)
-- 仕様
 
 ### [その他](https://github.com/Kanta715/ddd-introductory/tree/main/src/main/scala/Other)
