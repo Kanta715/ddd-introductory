@@ -1,0 +1,20 @@
+@startuml
+title クラス図
+
+class UserId {
+  v: Int
+}
+
+class UserName {
+  v: String
+}
+
+class User {
+  id:   UserId
+  name: UserName
+}
+
+User o-- UserId
+User o-- UserName
+
+@enduml
